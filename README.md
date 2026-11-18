@@ -1,16 +1,18 @@
-# Two agents gave different price ranges. The grader passed both.
+# When a web agent answers for the wrong page
 
-A WebArena shopper asked for one brand’s price range. In its reasoning, Llama had already recorded a $24.99 item, then reported **$6.99–$12.74**. Qwen had recorded a $6.99 item, then reported **$9.99–$38.99**. Both used prices from the second page to answer for the whole brand. GPT-4o mini passed both runs. The functional check and the published expert labels marked both unsuccessful. Each answer contradicts a price in its own trace. The true endpoints are unnecessary to spot either inconsistency. [Llama trace](https://huggingface.co/datasets/McGill-NLP/agent-reward-bench/blob/b6d17e646009d6cb63d5dd7be78807b680693f61/judgments/webarena/GenericAgent-meta-llama_Llama-3.3-70B-Instruct/gpt-4o-mini-noscreen/webarena.229.json) · [Qwen trace](https://huggingface.co/datasets/McGill-NLP/agent-reward-bench/blob/b6d17e646009d6cb63d5dd7be78807b680693f61/judgments/webarena/GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct/gpt-4o-mini-noscreen/webarena.229.json)
+On WebArena task 229, a shopper asks for the price range of Ugreen products. Llama notes a $24.99 item on the first page of results. It moves to the second page and reports $6.99 to $12.74 for the whole brand. Its own trace is enough to rule out that upper bound.
 
-## How often did we see this pattern?
+Qwen makes the same mistake at the other end. It notes a $6.99 item, turns the page, and gives $9.99 as the minimum. GPT-4o mini grades both runs as successful. The WebArena functional check and the published expert judgments mark both as failures. [Llama trace](https://huggingface.co/datasets/McGill-NLP/agent-reward-bench/blob/b6d17e646009d6cb63d5dd7be78807b680693f61/judgments/webarena/GenericAgent-meta-llama_Llama-3.3-70B-Instruct/gpt-4o-mini-noscreen/webarena.229.json) · [Qwen trace](https://huggingface.co/datasets/McGill-NLP/agent-reward-bench/blob/b6d17e646009d6cb63d5dd7be78807b680693f61/judgments/webarena/GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct/gpt-4o-mini-noscreen/webarena.229.json)
 
-We took all 62 automatic-grader disagreements across 48 distinct task IDs. Two model readers independently examined each trace for evidence that the agent answered or treated a narrower or different question as solved. They agreed on 54/62 labels, including 24 positive cases. In **14 runs on 13 distinct tasks**, both readers tagged a scope substitution, GPT-4o mini passed the run, and the published expert marked it unsuccessful. Those 14 came from 36 language-pass, functional-fail, expert-fail disagreements. All 14 are additional to the original Qwen example. Removing both agents’ runs on its task still leaves 13 runs on 12 other task IDs.
+## Counting the disagreements
 
-Scope is a broader category than inspecting one customer. It includes using the wrong page, population, time window or candidate set. The literal customer-view pattern also recurred on task 344: Llama answered for the shop from a customer-specific review grid. Here the expert accepted the answer too. A questionable method and an unsuccessful outcome are distinct observations. The review sampled disagreements by design. It cannot estimate the frequency of scope errors across all web-agent runs. [Rubric and method](AUDIT.md) · [All 62 paired ratings](audit.json)
+The two agents attempted the same 96 tasks. We reviewed all 62 runs where the functional check and GPT-4o mini disagreed. For each run, two model readers saw the goal and trajectory with the scores withheld. Their question was narrow. Did the agent treat evidence about one page, population, or time window as sufficient to answer a question about another?
 
-## Did the grader change the winner?
+Of the 36 disagreements where GPT-4o mini passed the run and both the functional check and the expert marked it unsuccessful, **14 showed this error according to both readers**. Those 14 runs span 13 tasks. We only audited disagreements, so this count tells us little about runs that both graders passed. Across all 62, the readers agreed on 54 classifications. Their reasons, including the eight splits, are available for inspection. [Rubric](AUDIT.md) · [Paired annotations](audit.json)
 
-Qwen finished ahead of Llama under both automatic graders on 96 matched WebArena tasks. The functional check put Qwen ahead by 9.4 percentage points. GPT-4o mini put it ahead by 15.6 points. The published expert labels put the gap at 10.4 points.
+One borderline case is worth keeping. On task 15, Qwen looked at one customer's reviews while trying to count mentions of a word across the store. It timed out before sending a count. One reader saw a scope error in its reasoning. The other saw an unfinished search. That run is excluded from the 14.
+
+## What changed on the leaderboard?
 
 | Successful runs | Qwen2.5-VL-72B | Llama-3.3-70B |
 | --- | ---: | ---: |
@@ -18,16 +20,20 @@ Qwen finished ahead of Llama under both automatic graders on 96 matched WebArena
 | GPT-4o mini, accessibility tree without screenshots | 53 | 38 |
 | Expert judgment | 32 | 22 |
 
-The automatic graders disagreed on 62 of 192 runs. On those 62, the experts sided with the functional check 38 times and the language grader 24 times. Over all runs, agreement with experts was 157/192 and 143/192 respectively. Paired task bootstrap 95% intervals for the Qwen lead were [1.0, 17.7], [3.1, 28.1], and [2.1, 19.8] percentage points, respectively. These exploratory intervals describe variation across sampled task IDs. Related task templates may make them optimistic.
+All three measures rank Qwen first. Switching from the functional check to the language grader increases its lead from 9.4 to 15.6 percentage points. The expert gap is 10.4 points. The expert labels agree with the functional check on 157 of 192 runs and with the language grader on 143.
 
-## Inspect one decision
+## Reproduce the result
 
-The first disagreement in numeric task order was Qwen on WebArena 15. The goal asked how many store reviews mentioned a particular word. The final grid showed one customer's reviews. The agent entered the word in the page banner and the grid's review filter remained empty. The run timed out before the agent sent a final count. GPT-4o mini still passed it. The functional check and expert marked it unsuccessful. A separate model reviewer given only goal and trajectory evidence, with agent identity and verdicts withheld, also judged it unsuccessful. In the full follow-up, one reader tagged the substitution in the agent’s reasoning. The second judged the agent was still trying to run the intended search. We excluded it from the consensus count. Blinding of the original expert annotators is unverified.
+Python 3.9+ and curl are sufficient. The recorded grader responses come with the dataset.
 
-## Reproduce and explore
+```sh
+python3 study.py
+python3 audit.py
+python3 -m http.server 8080 --bind 127.0.0.1
+```
 
-Run `python3 study.py` with Python 3.9+ and curl. The script downloads published annotations and archived judgments at a fixed dataset revision, caches them locally, and regenerates decisions.csv. No model API or keys are needed. To switch graders and inspect any trace, run `python3 -m http.server 8080 --bind 127.0.0.1` in this directory and open http://localhost:8080. Each evidence link contains the goal, agent actions and recorded grader response.
+Open <http://localhost:8080> to switch graders and inspect the underlying traces. The checked-in scores and annotations are sufficient to use the explorer offline. Trace links open the original records.
 
-We included the two open-weight agent configurations available for WebArena. Of 98 jointly annotated task IDs, 96 had a definitive, internally consistent expert success label for both agents. Repeated agreeing annotations count once. Both automatic verdicts come from the same saved trajectory record. Each task contributes equal weight. The bootstrap resamples the paired outcomes 10,000 times at seed 42. The reference measures expert-rated completion and can itself be fallible. This reanalysis does not establish a universal grader ranking, a causal effect, or a new benchmark.
+Of 98 shared task IDs, 96 had a consistent, definitive expert label for both agents. Each task receives equal weight. The study script also reports paired bootstrap intervals over task IDs. Related task templates can make these intervals too narrow.
 
-Source: [AgentRewardBench, Lu et al.](https://arxiv.org/abs/2504.08942) and its [versioned data and terms](https://huggingface.co/datasets/McGill-NLP/agent-reward-bench/tree/b6d17e646009d6cb63d5dd7be78807b680693f61). The researchers produced the underlying trajectories, judgments and annotations. This reanalysis adds the paired comparison, trace explorer and scope-error annotations. Run `python3 audit.py` for the audit counts.
+Lu et al. released the trajectories, grader outputs and expert annotations in AgentRewardBench. This repository adds the paired comparison, the scope audit and the explorer. [Paper](https://arxiv.org/abs/2504.08942) · [Dataset revision](https://huggingface.co/datasets/McGill-NLP/agent-reward-bench/tree/b6d17e646009d6cb63d5dd7be78807b680693f61) · [Data terms](DATA-TERMS.md)
