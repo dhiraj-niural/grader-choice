@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Does the grader change the winner?</title>
+<style>
+body{max-width:48rem;margin:6vh auto;padding:0 1.25rem;color:#182632;background:#faf9f5;font:17px/1.55 system-ui}h1{font:2.4rem/1.13 Georgia,serif}select{font:inherit;padding:.3rem}output{display:block;font-size:1.4rem;margin:1rem 0}a{color:#175368}table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{padding:.45rem;text-align:left;border-bottom:1px solid #ccc}
+</style>
+<h1>Does the grader change the winner?</h1>
+<p>Two web agents attempted the same 96 tasks. Choose who grades them.</p>
+<label>Score with <select id="grader"><option value="functional">WebArena functional check</option><option value="language">GPT-4o mini, accessibility tree</option><option value="expert">Published expert labels</option></select></label>
+<output id="score" aria-live="polite">Loading scores…</output>
+<label>Inspect task <select id="task"></select></label>
+<table><thead><tr><th>Agent</th><th>Functional</th><th>GPT-4o mini</th><th>Expert</th><th>Evidence</th></tr></thead><tbody id="cases"></tbody></table>
+<p>On task 15, a request for a store-wide review count led the Qwen agent to a single customer’s review grid. The language grader accepted the answer. A separate reviewer who saw only the goal and trace found that the store-wide count was never established.</p>
+<script type="module">
+const base = "https://huggingface.co/datasets/McGill-NLP/agent-reward-bench/blob/b6d17e646009d6cb63d5dd7be78807b680693f61/";
+const select = id => document.getElementById(id);
+try {
+  const response = await fetch("decisions.csv");
+  if (!response.ok) throw Error(response.status);
+  const lines = (await response.text()).trim().split(/\r?\n/);
+  const fields = lines.shift().split(",");
+  const rows = lines.map(line => Object.fromEntries(line.split(",").map((value,i) => [fields[i],value])));
+  const agents = [...new Set(rows.map(row => row.agent))];
+  const tasks = [...new Set(rows.map(row => row.task))];
+  const names = ["Qwen 2.5 VL 72B","Llama 3.3 70B"];
+  for (const task of tasks) select("task").add(new Option(task,task));
+  function render() {
+    const grade = select("grader").value;
+    select("score").textContent = agents.map((agent,i) => {
+      const passes = rows.filter(row => row.agent === agent && row[grade] === "1").length;
+      return names[i] + " " + passes + "/" + tasks.length;
+    }).join("  ·  ");
+    select("cases").replaceChildren();
+    for (const row of rows.filter(row => row.task === select("task").value)) {
+      const tr = select("cases").insertRow();
+      tr.insertCell().textContent = names[agents.indexOf(row.agent)];
+      for (const key of ["functional","language","expert"]) tr.insertCell().textContent = row[key] === "1" ? "Pass" : "Fail";
+      const link = document.createElement("a");
+      link.textContent = "Inspect trace";
+      link.href = base + "judgments/webarena/" + row.agent + "/gpt-4o-mini-noscreen/" + row.task + ".json";
+      tr.insertCell().append(link);
+    }
+  }
+  select("grader").onchange = select("task").onchange = render;
+  render();
+} catch { select("score").textContent = "Serve this folder with python3 -m http.server and open index.html."; }
+</script></html>
