@@ -3,14 +3,24 @@
 <title>Does the grader change the winner?</title>
 <style>
 body{max-width:48rem;margin:6vh auto;padding:0 1.25rem;color:#182632;background:#faf9f5;font:17px/1.55 system-ui}h1{font:2.4rem/1.13 Georgia,serif}select{font:inherit;padding:.3rem}output{display:block;font-size:1.4rem;margin:1rem 0}a{color:#175368}table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{padding:.45rem;text-align:left;border-bottom:1px solid #ccc}
+select{max-width:100%;box-sizing:border-box}details{padding:.75rem;background:#efeee7;border-radius:.3rem}summary{cursor:pointer}label{display:block;margin:.7rem 0}
+@media(max-width:600px){body{margin:1.5rem auto}h1{font-size:2rem}label select{display:block}td,th{padding:.25rem;font-size:.85rem;overflow-wrap:anywhere}table{table-layout:fixed}}
 </style>
-<h1>Does the grader change the winner?</h1>
+<h1>Would you pass this answer?</h1>
+<p>A shopper asks for a brand’s price range. On the first page the agent records an item at $24.99. On the second it reports a range of <strong>$6.99 to $12.74</strong>.</p>
+<details><summary>See how the graders scored it</summary><p>GPT-4o mini passed the run. The functional check and the published expert label both marked it unsuccessful. The agent used the prices on the last page for both endpoints. Inspect Llama on task 229 below.</p></details>
+<h2>Does the grader change the winner?</h2>
 <p>Two web agents attempted the same 96 tasks. Choose who grades them.</p>
 <label>Score with <select id="grader"><option value="functional">WebArena functional check</option><option value="language">GPT-4o mini, accessibility tree</option><option value="expert">Published expert labels</option></select></label>
 <output id="score" aria-live="polite">Loading scores…</output>
 <label>Inspect task <select id="task"></select></label>
 <table><thead><tr><th>Agent</th><th>Functional</th><th>GPT-4o mini</th><th>Expert</th><th>Evidence</th></tr></thead><tbody id="cases"></tbody></table>
-<p>On task 15, a request for a store-wide review count led the Qwen agent to a single customer’s review grid. The language grader accepted the answer. A separate reviewer who saw only the goal and trace found that the store-wide count was never established.</p>
+<p>On task 15, a request for a store-wide review count led the Qwen agent to a single customer’s review grid. The run ended without a final count sent to the user. The language grader still marked it successful. A separate reviewer who saw only the goal and trace found that the store-wide count was never established.</p>
+<h2>Audit the disagreements</h2>
+<p>Two model readers independently examined the task and recorded actions. Compare their reasons for tagging a scope error, then inspect the original evidence.</p>
+<label>Show <select id="filter"><option value="consensus">Both readers found a scope error, language grader passed, expert failed</option><option value="split">Readers disagreed</option><option value="all">All grader disagreements</option></select></label>
+<label>Run <select id="run"></select></label>
+<div id="ratings" aria-live="polite"></div>
 <script type="module">
 const base = "https://huggingface.co/datasets/McGill-NLP/agent-reward-bench/blob/b6d17e646009d6cb63d5dd7be78807b680693f61/";
 const select = id => document.getElementById(id);
@@ -43,5 +53,37 @@ try {
   }
   select("grader").onchange = select("task").onchange = render;
   render();
+  const auditResponse = await fetch("audit.json");
+  if (!auditResponse.ok) throw Error(auditResponse.status);
+  const audit = await auditResponse.json();
+  function inspectRun() {
+    const row = audit[Number(select("run").value)];
+    select("ratings").replaceChildren();
+    if (!row || !select("run").value) return;
+    for (const field of ["primary","reviewer"]) {
+      const p = document.createElement("p");
+      const label = field === "primary" ? "First reader" : "Second reader";
+      p.textContent = label + " (" + row[field] + "): " + row[field + "_evidence"];
+      select("ratings").append(p);
+    }
+    const evidence = document.createElement("a");
+    evidence.href = base + "judgments/webarena/" + row.agent + "/gpt-4o-mini-noscreen/" + row.task + ".json";
+    evidence.textContent = "Inspect this run";
+    select("ratings").append(evidence);
+  }
+  function filterRuns() {
+    select("run").replaceChildren();
+    audit.forEach((r,i) => {
+      const grade = rows.find(x => x.task === r.task && x.agent === r.agent);
+      if (select("filter").value === "consensus" &&
+          !(r.primary === "yes" && r.reviewer === "yes" && grade.language === "1" && grade.expert === "0")) return;
+      if (select("filter").value === "split" && r.primary === r.reviewer) return;
+      select("run").add(new Option(r.task + " · " + names[agents.indexOf(r.agent)],String(i)));
+    });
+    inspectRun();
+  }
+  select("filter").onchange = filterRuns;
+  select("run").onchange = inspectRun;
+  filterRuns();
 } catch { select("score").textContent = "Serve this folder with python3 -m http.server and open index.html."; }
 </script></html>

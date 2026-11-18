@@ -1,0 +1,560 @@
+[
+  {
+    "case": "C01",
+    "task": "webarena.788",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "unclear",
+    "primary_evidence": "Compared contributors on the requested branch graph and disclosed that location was unavailable. The graph's cap is not shown to bind.",
+    "reviewer_evidence": "Used the php52 chart as requested. It excludes merge commits, but their presence or relevance to the ranking is unknown."
+  },
+  {
+    "case": "C02",
+    "task": "webarena.654",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Left the refund form unsubmitted and explicitly disclosed the missing SKU.",
+    "reviewer_evidence": "The agent disclosed the missing speaker SKU when presenting the draft."
+  },
+  {
+    "case": "C03",
+    "task": "webarena.15",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Filtered review titles for the term and reported the one matching row as the count of reviews mentioning it anywhere.",
+    "reviewer_evidence": "Filtered review titles for best, then counted those rows as all mentions."
+  },
+  {
+    "case": "C04",
+    "task": "webarena.757",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Reported the travel time between the two selected cities. Any endpoint or route-description error concerns one route.",
+    "reviewer_evidence": "Routed between the two identified cities. The path detail is incomplete."
+  },
+  {
+    "case": "C05",
+    "task": "webarena.295",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Opened the named repository's SSH clone field and stalled without returning the command.",
+    "reviewer_evidence": "Displayed the repository SSH URL but did not supply the clone command."
+  },
+  {
+    "case": "C06",
+    "task": "webarena.655",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Drafted the refund and requested the missing SKU from the user.",
+    "reviewer_evidence": "Explicitly asked for the missing iPhone case SKU."
+  },
+  {
+    "case": "C07",
+    "task": "webarena.586",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Used the named mix's review form and received a moderation confirmation. The star choice concerns one value.",
+    "reviewer_evidence": "Submitted a review for the named mix and reported moderation."
+  },
+  {
+    "case": "C08",
+    "task": "webarena.126",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Said it was checking the current results page and recognized more pages might need checking. It gave no range.",
+    "reviewer_evidence": "Reported checking the current page and recognized other pages could matter."
+  },
+  {
+    "case": "C09",
+    "task": "webarena.769",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Saved one product with quantity 378 and declared the inventory updated for a request covering every size.",
+    "reviewer_evidence": "Created one simple product with quantity 378 and declared all inventory work complete without updating the size variants."
+  },
+  {
+    "case": "C10",
+    "task": "webarena.356",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Repeated route calculation for the requested endpoints and assumed the map had displayed it.",
+    "reviewer_evidence": "Tried to display a route between the two requested places."
+  },
+  {
+    "case": "C11",
+    "task": "webarena.268",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "unclear",
+    "reviewer": "no",
+    "primary_evidence": "Routed only to the park it considered likely closest after unsuccessful searches. It never reported a nearest-park finding and remained stuck on mode selection.",
+    "reviewer_evidence": "Proposed Acadia as likely and continued trying to select bicycle routing."
+  },
+  {
+    "case": "C12",
+    "task": "webarena.414",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Created MIT license text in the requested repository and displayed the resulting file.",
+    "reviewer_evidence": "Created the MIT license in the requested repository."
+  },
+  {
+    "case": "C13",
+    "task": "webarena.661",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "yes",
+    "primary_evidence": "Created a single issue in the empathy-prompts project after searching for ChatGPT. This is a destination choice for one issue.",
+    "reviewer_evidence": "After failing to find ChatGPT, opened the issue in empathy-prompts and claimed success."
+  },
+  {
+    "case": "C14",
+    "task": "webarena.655",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Left a literal SKU placeholder in the draft and mistook it for the required field value.",
+    "reviewer_evidence": "Filled a single refund form and waited for review. SKU accuracy is a field-level question."
+  },
+  {
+    "case": "C15",
+    "task": "webarena.158",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Repeatedly inspected one storage case's capacity without recommending it as the best option.",
+    "reviewer_evidence": "Examined one storage case and continued trying to confirm its capacity."
+  },
+  {
+    "case": "C16",
+    "task": "webarena.586",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Submitted a review of the named mix and continued interacting with its star selector.",
+    "reviewer_evidence": "Repeated attempts to select four stars left the review unfinished."
+  },
+  {
+    "case": "C17",
+    "task": "webarena.40",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "The origin resolved to another city. The agent reported calculation in progress and gave no reachability finding.",
+    "reviewer_evidence": "The map resolved Hobart Street to Boston, but the agent only announced a calculation in progress."
+  },
+  {
+    "case": "C18",
+    "task": "webarena.386",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Read one adapter listing's 65-percent rating for the requested cable. The potential error concerns one item or rating scale.",
+    "reviewer_evidence": "Reported the matching cable's percentage as the rounded score."
+  },
+  {
+    "case": "C19",
+    "task": "webarena.677",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "no",
+    "primary_evidence": "Applied Processing while a preexisting numeric keyword remained active, leaving the requested lookup on a doubly filtered zero-result grid.",
+    "reviewer_evidence": "Applied Processing to the orders status filter."
+  },
+  {
+    "case": "C20",
+    "task": "webarena.690",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Submitted a coupon request when the user had asked for a draft.",
+    "reviewer_evidence": "Submitted what was requested as a draft. The error concerns the action taken."
+  },
+  {
+    "case": "C21",
+    "task": "webarena.229",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Used entries 13–21 of 21 for both endpoints of a brand-wide price range despite previously seeing a higher price.",
+    "reviewer_evidence": "Read endpoints from items 13–21 of 21 and reported them as the range of all Ugreen products."
+  },
+  {
+    "case": "C22",
+    "task": "webarena.263",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Kept retrying category navigation and did not claim the parent clothing category fulfilled the request.",
+    "reviewer_evidence": "Repeated navigation between category filters without claiming the whole selection had been verified."
+  },
+  {
+    "case": "C23",
+    "task": "webarena.268",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "After nearby and statewide searches produced no identifiable parks, routed only to one named park and told the user it was closest.",
+    "reviewer_evidence": "After its general searches failed, treated the route to its one proposed park as enough to identify the closest."
+  },
+  {
+    "case": "C24",
+    "task": "webarena.370",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Searched for the requested university and hovered instead of opening its description.",
+    "reviewer_evidence": "Searched for the university and tried to find its description link."
+  },
+  {
+    "case": "C25",
+    "task": "webarena.790",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "unclear",
+    "reviewer": "no",
+    "primary_evidence": "Repeatedly attempted deletion of one fleece review from a 351-record grid while describing it as a shorts review. No completed deletion or claim of exhaustive coverage followed.",
+    "reviewer_evidence": "Repeatedly tried to delete one selected review without claiming the entire requested set was handled."
+  },
+  {
+    "case": "C26",
+    "task": "webarena.555",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Wrote five example-domain URLs as a substitute for the five recent posts, then certified the file as containing the required links.",
+    "reviewer_evidence": "Saved five example.com placeholders and called them the URLs of the five latest posts."
+  },
+  {
+    "case": "C27",
+    "task": "webarena.364",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "The origin field was empty. The agent reported the walking calculation in progress and gave no distance.",
+    "reviewer_evidence": "Reported that walking distance calculation was still in progress."
+  },
+  {
+    "case": "C28",
+    "task": "webarena.701",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Tried to select all groups and save the rule, but the final form showed no groups selected and required-field errors.",
+    "reviewer_evidence": "Attempted all-customer selection and ended on a required-field error. No narrower audience was declared sufficient."
+  },
+  {
+    "case": "C29",
+    "task": "webarena.272",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Continued paging through results to check for more qualifying products. It never presented the visited pages as exhaustive.",
+    "reviewer_evidence": "Kept checking pages and acknowledged additional products remained to be checked."
+  },
+  {
+    "case": "C30",
+    "task": "webarena.126",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Declared a storewide printer price range using the two printers visible on one page, even while acknowledging other pages might matter.",
+    "reviewer_evidence": "Reported the prices of two printers visible on one page as the store's range."
+  },
+  {
+    "case": "C31",
+    "task": "webarena.306",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Typed a date interval into the message-text search box and reported one commit from a screen listing dates outside the requested months.",
+    "reviewer_evidence": "Reported a count from the commits list with the date expression still in a textbox and November/December entries visible."
+  },
+  {
+    "case": "C32",
+    "task": "webarena.723",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Reported no matching submissions in the target forum after searching from the home feed. The final screen still showed unrelated machine-learning posts.",
+    "reviewer_evidence": "Concluded no target-author posts existed after searching from an unrelated forum and acknowledging irrelevant results."
+  },
+  {
+    "case": "C33",
+    "task": "webarena.544",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "unclear",
+    "primary_evidence": "Repeated attempts to enter unsourced quotations ended in the New Product editor. The goal concerned a single existing hoodie.",
+    "reviewer_evidence": "Attempted to enter unsourced customer quotes on a new-product form. The agent kept retrying the failed edit."
+  },
+  {
+    "case": "C34",
+    "task": "webarena.15",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "no",
+    "primary_evidence": "Reasoning explicitly accepted one customer-report row as the count of reviews containing the term. Later searches stayed within that customer's reviews and produced no final count.",
+    "reviewer_evidence": "Recognized the search for best was incomplete and kept trying to run it."
+  },
+  {
+    "case": "C35",
+    "task": "webarena.730",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Declared the task apparently complete after scrolling one news feed and processing visible submissions by the author.",
+    "reviewer_evidence": "Called the task complete after scrolling the visible news page without establishing coverage of the user's submissions."
+  },
+  {
+    "case": "C36",
+    "task": "webarena.426",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Searched for the town and stopped on the map results with a town link. No broader collection was requested.",
+    "reviewer_evidence": "Searched for Shanksville. No alternate population was offered as complete."
+  },
+  {
+    "case": "C37",
+    "task": "webarena.327",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Submitted the requested search and selected ascending product-name ordering for the result set. Pagination did not limit the sort.",
+    "reviewer_evidence": "Applied name and ascending direction to the requested query. The proposed first/last check was supplementary."
+  },
+  {
+    "case": "C38",
+    "task": "webarena.583",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Created the named forum with four sidebar entries. The description differed by a word.",
+    "reviewer_evidence": "Reported creation of the named forum; any mismatch concerns the form fields."
+  },
+  {
+    "case": "C39",
+    "task": "webarena.726",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Repeatedly hit a 404 on the same forum URL and reported an access failure.",
+    "reviewer_evidence": "Reported that the forum URL returned 404 and the task could not proceed."
+  },
+  {
+    "case": "C40",
+    "task": "webarena.100",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "After the nearby search returned no results, routed to one automatically resolved store and called it the nearest based on its 15 km walking route.",
+    "reviewer_evidence": "Used a walking route to one resolved Starbucks to assert that it was the nearest."
+  },
+  {
+    "case": "C41",
+    "task": "webarena.344",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Reported the shop had one review from a review grid scoped to a single customer, after increasing its page size.",
+    "reviewer_evidence": "Used the single review in a customerId-specific view as the entire shop's total."
+  },
+  {
+    "case": "C42",
+    "task": "webarena.325",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Claimed descending sorting for the query from a Health Care category listing. The final page showed 86 category items and no submitted search in the URL.",
+    "reviewer_evidence": "Filled the search box but reported the sorted health category as sorted mouth night guard listings."
+  },
+  {
+    "case": "C43",
+    "task": "webarena.158",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Opened the first search result, checked its 40-card capacity and declared the best-option request complete using fit alone.",
+    "reviewer_evidence": "Took the first case meeting the capacity threshold as the best option and declared completion."
+  },
+  {
+    "case": "C44",
+    "task": "webarena.27",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Counted one visible negative comment from the author within one submission and gave that as the author's total.",
+    "reviewer_evidence": "Used the author's sole visible negative comment on the page as their total."
+  },
+  {
+    "case": "C45",
+    "task": "webarena.583",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Created and repeatedly tried to save edits on the requested forum. The remaining differences concerned field contents.",
+    "reviewer_evidence": "Repeatedly tried to save the requested forum details."
+  },
+  {
+    "case": "C46",
+    "task": "webarena.364",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Recognized the route was still set to car and kept trying to select walking. No walking distance was reported from the car route.",
+    "reviewer_evidence": "Kept trying to switch the routing mode from car to walking."
+  },
+  {
+    "case": "C47",
+    "task": "webarena.311",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Reported the project-wide leader from a graph explicitly limited to master and excluding merge commits.",
+    "reviewer_evidence": "Reported the project-wide leader from a chart explicitly limited to non-merge commits on master."
+  },
+  {
+    "case": "C48",
+    "task": "webarena.311",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Compared contributor totals on the master graph, which excluded merge commits, then reported the leader for the entire project.",
+    "reviewer_evidence": "Reported the project-wide leader using the same branch-specific chart that excludes merges."
+  },
+  {
+    "case": "C49",
+    "task": "webarena.417",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Examined the requested merge request's ending activity and submitted a mention. The decision concerned the interpretation of those events.",
+    "reviewer_evidence": "Reviewed the named request's activity and mentioned its author based on visible assignment activity."
+  },
+  {
+    "case": "C50",
+    "task": "webarena.386",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Converted one adapter's displayed rating of 65 percent into a rounded three-star answer. The request was for one product.",
+    "reviewer_evidence": "Converted the adapter's percentage into a five-star score and rounded it."
+  },
+  {
+    "case": "C51",
+    "task": "webarena.654",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Left the refund form unsubmitted. The message claimed to include a SKU but contained no SKU value.",
+    "reviewer_evidence": "Completed the speaker refund draft and waited. SKU accuracy is a field-level question."
+  },
+  {
+    "case": "C52",
+    "task": "webarena.153",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Treated the single displayed driving route from a Manhattan store as the minimum because no alternatives were visible.",
+    "reviewer_evidence": "Treated the one displayed route from the Manhattan REI as the minimum because no alternative route was visible."
+  },
+  {
+    "case": "C53",
+    "task": "webarena.629",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "no",
+    "reviewer": "no",
+    "primary_evidence": "Entered the discussion topic in the city forum and repeatedly attempted submission. The last screen showed the creation form.",
+    "reviewer_evidence": "Kept trying to submit the Pittsburgh discussion post."
+  },
+  {
+    "case": "C54",
+    "task": "webarena.344",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Treated one named customer's count in the customer-grouped report as the shop-wide review total, relying on that report's single page.",
+    "reviewer_evidence": "Reported one customer's count in the by-customer report as the shop total."
+  },
+  {
+    "case": "C55",
+    "task": "webarena.416",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Repeatedly used the presence of an author comment anywhere in the discussion as evidence of a response at the end; the reasoning also switched to comment recency.",
+    "reviewer_evidence": "Changed the decision from who replied last to whether the author had commented anywhere in the thread."
+  },
+  {
+    "case": "C56",
+    "task": "webarena.778",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "unclear",
+    "reviewer": "unclear",
+    "primary_evidence": "Repeatedly applied the discount to the gray size-28 variant. The trace does not establish other size-28 variants or a claim that every variant was updated.",
+    "reviewer_evidence": "Repeatedly discounted only the gray size-28 variant. Trace does not establish which other size-28 variants existed or claim completion."
+  },
+  {
+    "case": "C57",
+    "task": "webarena.718",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Explicitly assumed the first five posts in the Hot feed were the all-time top five and acted on those posts.",
+    "reviewer_evidence": "Treated the first five Hot posts as the top five ever and voted on that basis."
+  },
+  {
+    "case": "C58",
+    "task": "webarena.343",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Submitted negative-label syntax as free text in the issue search and interpreted its empty result as covering all open unlabeled issues.",
+    "reviewer_evidence": "Treated an empty free-text search for a label expression as a complete search of unlabeled issues."
+  },
+  {
+    "case": "C59",
+    "task": "webarena.263",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "no",
+    "reviewer": "yes",
+    "primary_evidence": "Browsed the catalog with the Women category filter active and moved to the next page, consistent with a request to browse.",
+    "reviewer_evidence": "Called the Women filter sufficient despite a separate Clothing subcategory available within it."
+  },
+  {
+    "case": "C60",
+    "task": "webarena.171",
+    "agent": "GenericAgent-meta-llama_Llama-3.3-70B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Reported six low-star projects from the current dashboard as contributed repositories without establishing contributions for those projects.",
+    "reviewer_evidence": "Used the dashboard's own-project list to answer which projects the user had contributed to."
+  },
+  {
+    "case": "C61",
+    "task": "webarena.229",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "Used only visible prices on the second page, starting with result 13, to declare the brand-wide minimum and maximum.",
+    "reviewer_evidence": "Reported the extrema of visible second-page prices as the brand-wide range."
+  },
+  {
+    "case": "C62",
+    "task": "webarena.266",
+    "agent": "GenericAgent-Qwen_Qwen2.5-VL-72B-Instruct",
+    "primary": "yes",
+    "reviewer": "yes",
+    "primary_evidence": "After near-city searches failed, looked up one named park and inferred it was closest because the map showed its location.",
+    "reviewer_evidence": "Treated the map centered on the one guessed park as proof that it was the nearest to Portland."
+  }
+]
